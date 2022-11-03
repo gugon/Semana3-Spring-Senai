@@ -17,17 +17,22 @@ public class CadastroItemPedidoService {
     private ItemPedidoRepository itemPedidoRepository;
 
     @Transactional
-    public ItemPedidoModel salvar(ItemPedidoModel item){
-        return itemPedidoRepository.save(item);
+    public void deleteItemPedidoById(Long idItemPedido){
+        itemPedidoRepository.deleteById(idItemPedido);
+    }
+
+
+    public ItemPedidoModel getItemPedidoById(Long idItemPedido){
+        return itemPedidoRepository.findById(idItemPedido).get();
     }
 
     @Transactional
-    public void delete(Long idItem){
-        itemPedidoRepository.deleteById(idItem);
+    public void deleteItemPedido(ItemPedidoModel itemPedido){
+        itemPedidoRepository.delete(itemPedido);
     }
-
 
     public List<ItemPedidoModel> getItensPedido(){
         return itemPedidoRepository.findAll();
     }
+
 }

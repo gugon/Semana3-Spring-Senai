@@ -7,6 +7,8 @@ import br.com.futurodev.semana3.input.ProdutoInput;
 import br.com.futurodev.semana3.model.ItemPedidoModel;
 import br.com.futurodev.semana3.model.ProdutoModel;
 import br.com.futurodev.semana3.service.CadastroItemPedidoService;
+import br.com.futurodev.semana3.service.CadastroPedidoService;
+import br.com.futurodev.semana3.service.CadastroProdutoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +27,19 @@ public class ItemPedidoController {
     @Autowired
     private CadastroItemPedidoService cadastroItemPedidoService;
 
-    @ApiOperation("Salva itens de um pedido")
-    @PostMapping(value = "/", produces ="application/json")
-    public ResponseEntity<ItemPedidoRepresentationModel> cadastrar(@RequestBody ItemPedidoInput itemPedidoInput){
-        ItemPedidoModel item = toDomainObject(itemPedidoInput);
-        cadastroItemPedidoService.salvar(item);
-        return new ResponseEntity<ItemPedidoRepresentationModel>(toModel(item), HttpStatus.CREATED);
-    }
+    @Autowired
+    private CadastroProdutoService cadastroProdutoService;
+
+    @Autowired
+    private CadastroPedidoService cadastroPedidoService;
+
+//    @ApiOperation("Salva itens de um pedido")
+//    @PostMapping(value = "/", produces ="application/json")
+//    public ResponseEntity<ItemPedidoRepresentationModel> cadastrar(@RequestBody ItemPedidoInput itemPedidoInput){
+//        ItemPedidoModel item = toDomainObject(itemPedidoInput);
+//        cadastroItemPedidoService.salvar(item);
+//        return new ResponseEntity<ItemPedidoRepresentationModel>(toModel(item), HttpStatus.CREATED);
+//    }
 
     @ApiOperation("Lista itens de um pedido")
     @GetMapping(value = "/", produces = "application/json")
@@ -53,7 +61,9 @@ public class ItemPedidoController {
         ItemPedidoModel itemPedidoModel = new ItemPedidoModel();
         itemPedidoModel.setId(itemPedidoInput.getId());
         itemPedidoModel.setQuantidade(itemPedidoInput.getQuantidade());
-        itemPedidoModel.setValorItem(itemPedidoInput.getValorItem());
+        itemPedidoModel.setValorItem(itemPedidoInput.getPrecoVenda());
+        itemPedidoModel.setPedido(cadastroPedidoService.getPedidoById(itemPedidoInput.getIdPedido()));
+        itemPedidoModel.setProduto(cadastroProdutoService.getProdutoById(itemPedidoInput.getIdProduto()));
 
         return itemPedidoModel;
     }
@@ -63,6 +73,8 @@ public class ItemPedidoController {
         itemPedidoRepresentationModel.setId(itemPedidoModel.getId());
         itemPedidoRepresentationModel.setQuantidade(itemPedidoModel.getQuantidade());
         itemPedidoRepresentationModel.setValorItem(itemPedidoModel.getValorItem());
+//        itemPedidoRepresentationModel.setIdPedido(itemPedidoModel.getPedido().getId());
+        itemPedidoRepresentationModel.setIdProduto(itemPedidoModel.getProduto().getId());
 
         return itemPedidoRepresentationModel;
     }

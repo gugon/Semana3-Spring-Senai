@@ -2,6 +2,9 @@ package br.com.futurodev.semana3.dto;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class ClienteRepresentationModel {
 
@@ -9,6 +12,6 @@ public class ClienteRepresentationModel {
     private String nome;
     private String cpf;
     private String rg;
-    private PedidoRepresentationModel pedido;
+//    private List<PedidoRepresentationModel> pedidos = new ArrayList<PedidoRepresentationModel>();
 
 }

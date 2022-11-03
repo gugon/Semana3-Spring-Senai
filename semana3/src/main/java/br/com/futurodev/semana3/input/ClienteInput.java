@@ -13,5 +13,5 @@ public class ClienteInput {
 
     private String rg;
 
-    private PedidoRepresentationModel pedido;
+
 }

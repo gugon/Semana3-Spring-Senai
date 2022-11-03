@@ -7,6 +7,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.Column;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +15,12 @@ import java.util.List;
 @Data
 public class PedidoInput {
 
-    private Long id;
+    private Long idPedido;
 
-    @CreationTimestamp
-    private OffsetDateTime dataHoraCadastro;
+    private Long idCliente;
 
-    @UpdateTimestamp
-    private OffsetDateTime dataHoraAlteracao;
+    private Long idFormaPagamento;
 
-    private ClienteModel cliente;
+    private List<ItemPedidoInput> itensPedido;
 
-    private FormaPagamentoModel formaPagamento;
-
-    private List<ItemPedidoRepresentationModel> itens = new ArrayList<ItemPedidoRepresentationModel>();
 }

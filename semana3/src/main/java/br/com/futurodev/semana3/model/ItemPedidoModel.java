@@ -13,17 +13,21 @@ public class ItemPedidoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double quantidade;
-
     private double valorItem;
 
+    private double quantidade;
+
     @OneToOne
-    @JoinColumn(name = "idProduto", referencedColumnName = "id", foreignKey = @ForeignKey(name ="fk_produto"))
+    @JoinColumn(name = "id_produto", foreignKey = @ForeignKey(name = "fk_produto"))
     private ProdutoModel produto;
 
     @ManyToOne
-    @JoinColumn(name = "idPedido", referencedColumnName = "id", foreignKey = @ForeignKey(name ="fk_pedido"))
-    @JsonBackReference
+    @JoinColumn(name = "id_pedido", referencedColumnName = "id", foreignKey = @ForeignKey(name =  "fk_pedido"))
     private PedidoModel pedido;
+
+    @JsonBackReference
+    public PedidoModel getPedido() {
+        return pedido;
+    }
 
 }

@@ -14,15 +14,14 @@ public class PedidoRepresentationModel {
 
     private Long id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ssZ", timezone = "UTC")
-    private OffsetDateTime dataHoraCadastro;
+    private Long idCliente;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ssZ", timezone = "UTC")
-    private OffsetDateTime dataHoraAlteracao;
+    private String nomeCliente;
 
-    private ClienteModel cliente;
+    private Long idFormaPagamento;
 
-    private FormaPagamentoModel formaPagamento;
+    private String formaPagamentoDescricao;
 
-    private List<ItemPedidoRepresentationModel> itens = new ArrayList<ItemPedidoRepresentationModel>();
+
+    private List<ItemPedidoRepresentationModel> itensPedidoRepresentationModel = new ArrayList<ItemPedidoRepresentationModel>();
 }

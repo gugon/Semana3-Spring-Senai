@@ -5,24 +5,24 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.Column;
 import java.time.OffsetDateTime;
 
 @Data
 public class ProdutoInput {
 
-    private Long id;
-
+    private Long idProduto;
     private String descricao;
 
-    private double precoCompra;
+    private double compra;
+    private double venda;
 
-    private double precoVenda;
+//    @CreationTimestamp
+//    @Column(columnDefinition = "timestamp without time zone DEFAULT timezone('utc'::text, CURRENT_TIMESTAMP(0))", updatable = false)
+//    private OffsetDateTime dataHoraCadastro;
+//
+//    @UpdateTimestamp
+//    @Column(columnDefinition = "timestamp without time zone")
+//    private OffsetDateTime dataHoraAlteracao;
 
-    @CreationTimestamp
-    private OffsetDateTime dataHoraCadastro;
-
-    @UpdateTimestamp
-    private OffsetDateTime dataHoraAlteracao;
-
-    private ItemPedidoModel itemPedido;
 }

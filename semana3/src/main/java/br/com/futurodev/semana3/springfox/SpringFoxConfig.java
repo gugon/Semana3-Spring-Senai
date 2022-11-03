@@ -12,8 +12,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
-
 
 @Configuration
 @EnableSwagger2
@@ -25,8 +23,9 @@ public class SpringFoxConfig extends WebMvcConfigurationSupport {
                 .select() // retornamos um builder para selecionar os endpoints que deve ser expostos
                 .apis(RequestHandlerSelectors.any()) // especificar o que queremos, e quais controladores, endpoints que o springfox orá scanear
                 .build() // montamos nosso sumário Docket
-                .apiInfo(metaData())
-                .tags(new Tag("Clientes","Forma de Pagamento"));
+                .apiInfo(metaData());
+//                .tags(new Tag("Clientes","api sobre cliente"),
+//                      new Tag("Forma de Pagamento","api forma de pagamento"));
 
     }
 

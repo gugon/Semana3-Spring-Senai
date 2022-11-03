@@ -1,5 +1,6 @@
 package br.com.futurodev.semana3.service;
 
+import br.com.futurodev.semana3.model.ItemPedidoModel;
 import br.com.futurodev.semana3.model.PedidoModel;
 import br.com.futurodev.semana3.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,21 @@ public class CadastroPedidoService {
     }
 
     @Transactional
-    public void delete(Long idPedido){
+    public void deletePedidoById(Long idPedido){
         pedidoRepository.deleteById(idPedido);
     }
 
 
     public List<PedidoModel> getPedidos(){
         return pedidoRepository.findAll();
+    }
+
+    public PedidoModel getPedidoById(Long idPedido){
+        PedidoModel pedido = pedidoRepository.findById(idPedido).get();
+        return pedido;
+    }
+
+    public List<PedidoModel> getPedidoByIdCliente(Long idCliente){
+        return pedidoRepository.getPedidosByIdCliente(idCliente);
     }
 }

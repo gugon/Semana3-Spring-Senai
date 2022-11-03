@@ -9,18 +9,12 @@ import java.time.OffsetDateTime;
 public class ProdutoRepresentationModel {
     private Long id;
 
-    private String descricao;
+    private String decricao;
+
+    private String descricaoReduzida;
 
     private double precoCompra;
 
     private double precoVenda;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ssZ", timezone = "UTC")
-    private OffsetDateTime dataHoraCadastro;
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ssZ", timezone = "UTC")
-    private OffsetDateTime dataHoraAlteracao;
-
-
-    private ItemPedidoRepresentationModel itemPedido;
 }

@@ -17,18 +17,20 @@ public class ProdutoModel {
 
     private String descricao;
 
+    private String descricaoReduzida;
+
     private double precoCompra;
 
     private double precoVenda;
 
+
     @CreationTimestamp
+    @Column(columnDefinition = "timestamp without time zone DEFAULT timezone('utc'::text, CURRENT_TIMESTAMP(0))", updatable = false)
     private OffsetDateTime dataHoraCadastro;
 
     @UpdateTimestamp
+    @Column(columnDefinition = "timestamp without time zone")
     private OffsetDateTime dataHoraAlteracao;
-
-    @OneToOne(mappedBy = "produto")
-    private ItemPedidoModel itemPedido;
 
 
 }

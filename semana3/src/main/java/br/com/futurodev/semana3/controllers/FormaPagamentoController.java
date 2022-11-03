@@ -1,7 +1,10 @@
 package br.com.futurodev.semana3.controllers;
 
+import br.com.futurodev.semana3.dto.ClienteRepresentationModel;
 import br.com.futurodev.semana3.dto.FormaPagamentoRepresentationModel;
+import br.com.futurodev.semana3.input.ClienteInput;
 import br.com.futurodev.semana3.input.FormaPagamentoInput;
+import br.com.futurodev.semana3.model.ClienteModel;
 import br.com.futurodev.semana3.model.FormaPagamentoModel;
 import br.com.futurodev.semana3.service.CadastroFormaPagamentoService;
 import io.swagger.annotations.Api;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Api(tags = "Forma de Pagamento")
+@Api(tags = "Formas de Pagamento")
 @RestController
 @RequestMapping(value = "/pagamento")
 public class FormaPagamentoController {
@@ -28,6 +31,21 @@ public class FormaPagamentoController {
         FormaPagamentoModel pagamento = toDomainObject(pagamentoInput);
         cadastroFormaPagamentoService.salvar(pagamento);
         return new ResponseEntity<FormaPagamentoRepresentationModel>(toModel(pagamento), HttpStatus.CREATED);
+    }
+
+    @ApiOperation("Atualiza uma forma de pagamento")
+    @PutMapping(value = "/", produces ="application/json")
+    public ResponseEntity<FormaPagamentoRepresentationModel> atualizar(@RequestBody FormaPagamentoInput formaPagamentoInput) {
+        FormaPagamentoModel formaPagamentoModel = cadastroFormaPagamentoService.salvar(toDomainObject(formaPagamentoInput));
+        return new ResponseEntity<FormaPagamentoRepresentationModel>(toModel(formaPagamentoModel), HttpStatus.OK);
+    }
+
+    @ApiOperation("Deleta uma forma de pagamento")
+    @DeleteMapping
+    @ResponseBody
+    public ResponseEntity<String> delete(@RequestParam Long idFormaPagamento) {
+        cadastroFormaPagamentoService.delete(idFormaPagamento);
+        return new ResponseEntity<String>("Forma de pagamento ID: " + idFormaPagamento + " deletado.", HttpStatus.OK);
     }
 
     @ApiOperation("Listar formas de pagamento")

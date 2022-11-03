@@ -20,13 +20,17 @@ public class CadastroFormaPagamentoService {
         return formaPagamentoRepository.save(pagamento);
     }
 
-//    @Transactional
-//    public void delete(Long idFormaPagamentoModel){
-//        formaPagamentoRepository.deleteById(idCliente);
-//    }
+    @Transactional
+    public void delete(Long idFormaPagamentoModel){
+        formaPagamentoRepository.deleteById(idFormaPagamentoModel);
+    }
 
 
     public List<FormaPagamentoModel> getFormaPagamentos(){
         return formaPagamentoRepository.findAll();
+    }
+
+    public FormaPagamentoModel getFormaPagamentoById(Long idFormaPagamento){
+        return formaPagamentoRepository.findById(idFormaPagamento).get();
     }
 }
